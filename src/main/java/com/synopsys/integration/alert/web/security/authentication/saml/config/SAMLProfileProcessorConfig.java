@@ -32,6 +32,7 @@ import org.apache.velocity.app.VelocityEngine;
 import org.opensaml.saml2.metadata.provider.MetadataProviderException;
 import org.opensaml.xml.parse.ParserPool;
 import org.opensaml.xml.parse.StaticBasicParserPool;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.saml.SAMLBootstrap;
@@ -74,6 +75,7 @@ public class SAMLProfileProcessorConfig {
     }
 
     @Bean
+    @Qualifier("metadata")
     public CachingMetadataManager metadata() throws MetadataProviderException {
         return new CachingMetadataManager(Collections.emptyList());
     }
