@@ -1,6 +1,6 @@
 {
     "name": "blackduck-alert",
-    "version": "6.2.1-DELAY-TASK-SNAPSHOT",
+    "version": "6.2.1-PROCESSING-SNAPSHOT",
     "description": "Alert npm project",
     "keywords": [
         "blackduck",
