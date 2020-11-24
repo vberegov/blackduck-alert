@@ -95,6 +95,7 @@ public class DefaultNotificationManager implements NotificationManager {
             List<Long> notificationIds = savedModels.stream()
                                              .map(AlertNotificationModel::getId)
                                              .collect(Collectors.toList());
+            logger.info("Send event for these notification Ids: {}.", notificationIds);
             eventManager.sendEvent(new NotificationEvent(notificationIds));
         }
         return savedModels;

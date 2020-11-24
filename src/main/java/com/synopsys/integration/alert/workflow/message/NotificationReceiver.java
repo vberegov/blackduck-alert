@@ -65,7 +65,7 @@ public class NotificationReceiver extends MessageReceiver<NotificationEvent> imp
                 return;
             }
             logger.debug("Event {}", event);
-            logger.info("Processing event for {} notifications.", event.getNotificationIds().size());
+            logger.info("Processing event for these notification Ids: {}.", event.getNotificationIds());
             List<AlertNotificationModel> notifications = notificationManager.findByIds(event.getNotificationIds());
             List<DistributionEvent> distributionEvents = notificationProcessor.processNotifications(FrequencyType.REAL_TIME, notifications);
             logger.info("Sending {} events for notifications.", distributionEvents.size());
