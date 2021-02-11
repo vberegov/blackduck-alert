@@ -26,12 +26,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.synopsys.integration.alert.common.rest.ResponseFactory;
 
@@ -51,6 +54,13 @@ public class HomeController {
            Alert will return a 404 on the main page because index.html will not be served up by this method.
         */
         return "index";
+    }
+
+    // TODO need to delete this before release
+    @GetMapping(value = { "/jrTest" }, produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity jrTest(HttpServletRequest request, HttpServletResponse response) {
+        String location = ServletUriComponentsBuilder.fromRequest(request).toUriString();
+        return ResponseEntity.status(HttpStatus.OK).header(HttpHeaders.LOCATION, location).build();
     }
 
     @GetMapping("/api/verify")

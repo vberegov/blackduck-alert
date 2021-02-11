@@ -36,6 +36,7 @@ import com.synopsys.integration.alert.common.rest.AlertRestConstants;
 public class HttpPathManager {
     public static final String PATH_ROOT_HASHTAG = "/#";
     public static final String PATH_ROOT = "/";
+    public static final String PATH_JRTEST = "/jrTest";
 
     public static final String PATH_CSS_STYLE_CSS = "/css/style.css";
     public static final String PATH_FAVICON_ICO = "/favicon.ico";
@@ -56,6 +57,7 @@ public class HttpPathManager {
 
     private static final String[] DEFAULT_PATHS = {
         PATH_ROOT,
+        PATH_JRTEST,
         PATH_ROOT_HASHTAG,
         PATH_FAVICON_ICO,
         PATH_FONTS,
