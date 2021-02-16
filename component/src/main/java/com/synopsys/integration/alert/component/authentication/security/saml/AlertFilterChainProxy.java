@@ -29,9 +29,12 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 public class AlertFilterChainProxy extends FilterChainProxy {
     final SAMLContext samlContext;
@@ -43,6 +46,11 @@ public class AlertFilterChainProxy extends FilterChainProxy {
 
     @Override
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {
+        String location = ServletUriComponentsBuilder.fromCurrentRequest().toUriString();
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+        httpServletResponse.setHeader(
+            HttpHeaders.LOCATION, location);
+
         if (samlContext.isSAMLEnabled()) {
             super.doFilter(request, response, chain);
             return;
