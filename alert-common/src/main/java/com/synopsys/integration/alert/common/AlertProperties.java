@@ -211,7 +211,8 @@ public class AlertProperties {
             } else {
                 url = new URL(protocol, hostName, path);
             }
-            return Optional.of(url.toString());
+            String urlString = StringUtils.appendIfMissing(url.toString(), "/");
+            return Optional.of(urlString);
         } catch (NumberFormatException | MalformedURLException ex) {
             return Optional.empty();
         }

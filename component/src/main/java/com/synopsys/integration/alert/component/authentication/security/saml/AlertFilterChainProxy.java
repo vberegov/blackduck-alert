@@ -48,8 +48,7 @@ public class AlertFilterChainProxy extends FilterChainProxy {
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {
         String location = ServletUriComponentsBuilder.fromCurrentRequest().toUriString();
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        httpServletResponse.setHeader(
-            HttpHeaders.LOCATION, location);
+        httpServletResponse.setHeader(HttpHeaders.LOCATION, location);
 
         if (samlContext.isSAMLEnabled()) {
             super.doFilter(request, response, chain);
