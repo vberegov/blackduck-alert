@@ -1,0 +1,7 @@
+ext.moduleName = 'com.synopsys.integration.alert.vaadin-web'
+
+dependencies {
+    implementation platform(project(':alert-platform'))
+
+    implementation project(':alert-common')
+}
