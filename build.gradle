@@ -98,6 +98,7 @@ dependencies {
     implementation project(':ui')
     implementation project(':workflow')
     implementation project(':web')
+    implementation project(':vaadin-web')
 
     testImplementation project(':test-common')
 
