@@ -14,6 +14,7 @@ buildscript {
 
 plugins {
     id 'application'
+    id 'com.vaadin' version '0.14.3.7' apply false
 }
 
 ext {
@@ -72,6 +73,10 @@ subprojects {
         }
     }
 }
+
+//project("vaadin-web") {
+//    apply plugin: 'com.vaadin'
+//}
 
 // configure the version of the JaCoCo plugin to 0.8.2 which works for Java 11 until we switch to a gradle wrapper that includes 0.8.2+ by default.
 jacoco {
