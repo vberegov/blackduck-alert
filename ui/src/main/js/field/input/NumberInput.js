@@ -1,23 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import LabeledField from 'field/LabeledField';
 
-class NumberInput extends Component {
-    render() {
-        const {
-            readOnly, inputClass, id, name, value, onChange
-        } = this.props;
+function NumberInput(props) {
+    const {
+        readOnly, inputClass, id, name, value, onChange
+    } = props;
 
-        let field = null;
-        if (readOnly) {
-            field = (<div className="d-inline-flex flex-column p-2 col-sm-3"><input id={id} type="number" readOnly className={inputClass} name={name} value={value} /></div>);
-        } else {
-            field = (<div className="d-inline-flex flex-column p-2 col-sm-3"><input id={id} type="number" className={inputClass} name={name} value={value} onChange={onChange} /></div>);
-        }
-        return (
-            <LabeledField field={field} {...this.props} />
-        );
-    }
+    const onChangeIfApplicable = (!readOnly) ? onChange : () => null;
+    const field = <div className="d-inline-flex flex-column p-2 col-sm-3"><input id={id} type="number" className={inputClass} readOnly={readOnly} name={name} value={value} onChange={onChangeIfApplicable} /></div>;
+    return (
+        <LabeledField field={field} {...props} />
+    );
 }
 
 NumberInput.propTypes = {

@@ -1,33 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import LabeledField from 'field/LabeledField';
 
-class PasswordInput extends Component {
-    render() {
-        const {
-            readOnly, isSet, inputClass, id, name, value, onChange
-        } = this.props;
+function PasswordInput(props) {
+    const {
+        readOnly, isSet, inputClass, id, name, value, onChange
+    } = props;
 
-        const placeholderText = (isSet) ? '***********' : null;
+    const placeholderText = (isSet) ? '***********' : null;
 
-        let field;
-        if (readOnly) {
-            field = (
-                <div className="d-inline-flex flex-column p-2 col-sm-8">
-                    <input id={id} type="password" readOnly className={inputClass} name={name} value={value} placeholder={placeholderText} />
-                </div>
-            );
-        } else {
-            field = (
-                <div className="d-inline-flex flex-column p-2 col-sm-8">
-                    <input id={id} type="password" className={inputClass} name={name} value={value} onChange={onChange} placeholder={placeholderText} />
-                </div>
-            );
-        }
-        return (
-            <LabeledField field={field} {...this.props} />
-        );
-    }
+    const onChangeIfApplicable = (!readOnly) ? onChange : () => null;
+    const field = (
+        <div className="d-inline-flex flex-column p-2 col-sm-8">
+            <input id={id} type="password" readOnly={readOnly} className={inputClass} name={name} value={value} onChange={onChangeIfApplicable} placeholder={placeholderText} />
+        </div>
+    );
+    return (
+        <LabeledField field={field} {...props} />
+    );
 }
 
 PasswordInput.propTypes = {

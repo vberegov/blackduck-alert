@@ -43,7 +43,7 @@ function DynamicSelectInput(props) {
         </MultiValue>
     );
 
-    const components = {
+    const labelComponents = {
         Option: typeOptionLabel,
         SingleValue: typeLabel,
         MultiValue: multiTypeLabel
@@ -65,7 +65,7 @@ function DynamicSelectInput(props) {
                 value={selectValue}
                 isMulti={multiSelect}
                 closeMenuOnSelect={!multiSelect}
-                components={components}
+                components={labelComponents}
                 isDisabled={readOnly}
                 noOptionsMessage={() => 'No options available'}
                 onFocus={onFocus}

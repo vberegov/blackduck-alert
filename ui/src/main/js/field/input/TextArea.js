@@ -1,33 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import LabeledField from 'field/LabeledField';
 
-class TextArea extends Component {
-    render() {
-        const {
-            inputClass, sizeClass, readOnly, name, value, onChange, id
-        } = this.props;
-        const divClasses = `${sizeClass} d-inline-flex`;
+function TextArea(props) {
+    const {
+        inputClass, sizeClass, readOnly, name, value, onChange, id
+    } = props;
+    const divClasses = `${sizeClass} d-inline-flex`;
 
-        let field;
-        if (readOnly) {
-            field = (
-                <div className={divClasses}>
-                    <textarea id={id} rows="8" cols="60" readOnly className={inputClass} name={name} value={value} />
-                </div>
-            );
-        } else {
-            field = (
-                <div className={divClasses}>
-                    <textarea id={id} rows="8" cols="60" className={inputClass} name={name} value={value} onChange={onChange} />
-                </div>
-            );
-        }
+    const onChangeIfApplicable = (!readOnly) ? onChange : () => null;
+    const field = (
+        <div className={divClasses}>
+            <textarea id={id} rows="8" cols="60" readOnly={readOnly} className={inputClass} name={name} value={value} onChange={onChangeIfApplicable} />
+        </div>
+    );
 
-        return (
-            <LabeledField field={field} {...this.props} />
-        );
-    }
+    return (
+        <LabeledField field={field} {...props} />
+    );
 }
 
 TextArea.propTypes = {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import LabeledField from 'field/LabeledField';
@@ -7,41 +7,39 @@ function noOptionsMessage() {
     return null;
 }
 
-class SelectInput extends Component {
-    render() {
-        const {
-            onChange, id, inputClass, options, isSearchable, placeholder, value, removeSelected, hasMultipleValues, components, selectSpacingClass, readOnly, clearable
-        } = this.props;
-        const selectClasses = `${selectSpacingClass} d-inline-flex p-2`;
-        let closeOnSelect = true;
-        if (hasMultipleValues) {
-            closeOnSelect = false;
-        }
-
-        const field = (
-            <div className={selectClasses}>
-                <Select
-                    id={id}
-                    className={inputClass}
-                    onChange={onChange}
-                    isSearchable={isSearchable}
-                    isClearable={clearable}
-                    removeSelected={removeSelected}
-                    options={options}
-                    placeholder={placeholder}
-                    value={value}
-                    isMulti={hasMultipleValues}
-                    closeMenuOnSelect={closeOnSelect}
-                    components={components}
-                    noOptionsMessage={noOptionsMessage}
-                    isDisabled={readOnly}
-                />
-            </div>
-        );
-        return (
-            <LabeledField field={field} {...this.props} />
-        );
+const SelectInput = (props) => {
+    const {
+        onChange, id, inputClass, options, isSearchable, placeholder, value, removeSelected, hasMultipleValues, components, selectSpacingClass, readOnly, clearable
+    } = props;
+    const selectClasses = `${selectSpacingClass} d-inline-flex p-2`;
+    let closeOnSelect = true;
+    if (hasMultipleValues) {
+        closeOnSelect = false;
     }
+
+    const field = (
+        <div className={selectClasses}>
+            <Select
+                id={id}
+                className={inputClass}
+                onChange={onChange}
+                isSearchable={isSearchable}
+                isClearable={clearable}
+                removeSelected={removeSelected}
+                options={options}
+                placeholder={placeholder}
+                value={value}
+                isMulti={hasMultipleValues}
+                closeMenuOnSelect={closeOnSelect}
+                components={components}
+                noOptionsMessage={noOptionsMessage}
+                isDisabled={readOnly}
+            />
+        </div>
+    );
+    return (
+        <LabeledField field={field} {...props} />
+    );
 }
 
 SelectInput.propTypes = {

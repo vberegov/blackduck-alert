@@ -18,6 +18,7 @@ import { OPERATIONS } from 'util/descriptorUtilities';
 import * as FieldMapping from 'util/fieldMapping';
 import StatusMessage from 'field/StatusMessage';
 import ChannelTestModal from 'dynamic/ChannelTestModal';
+import TableSelectInputField from '../field/input/TableSelectInput/TableSelectInputField';
 
 class GlobalConfiguration extends React.Component {
     constructor(props) {
@@ -172,8 +173,39 @@ class GlobalConfiguration extends React.Component {
                 </form>
             );
 
+        const testColumns = [
+            {
+                header: 'first',
+                headerLabel: 'First',
+                isKey: false,
+                hidden: false
+            },
+            {
+                header: 'second',
+                headerLabel: 'Second',
+                isKey: false,
+                hidden: false
+            },
+            {
+                header: 'third',
+                headerLabel: 'Third',
+                isKey: false,
+                hidden: false
+            }
+        ];
+
         return (
             <div>
+                {/* FIXME this is only for testing purposes and should be removed before merging */}
+                <TableSelectInputField
+                    fieldKey="test"
+                    csrfToken="fake"
+                    columns={testColumns}
+                    endpoint="/fakenews"
+                    currentConfig={{}}
+                    label="Test Field"
+                    description="Test field description"
+                />
                 <ConfigurationLabel
                     configurationName={label}
                     description={description}
